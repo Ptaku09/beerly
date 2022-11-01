@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import HomePageBackground from '../components/templates/HomePageBackground';
 import { ReactElement } from 'react';
-import Title from '../components/atoms/Title';
-import Subtitle from '../components/atoms/Subtitle';
+import HomePageBackground from 'components/templates/HomePageBackground';
+import Subtitle from 'components/atoms/Subtitle';
+import Title from 'components/atoms/Title';
 
 export default function Home() {
   return (

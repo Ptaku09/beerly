@@ -1,6 +1,6 @@
 import React from 'react';
-import WaveWhite from '../atoms/WaveWhite';
-import WaveOrange from '../atoms/WaveOrange';
+import WaveWhite from 'components/atoms/WaveWhite';
+import WaveOrange from 'components/atoms/WaveOrange';
 
 const HomePageBackground = () => {
   return (
