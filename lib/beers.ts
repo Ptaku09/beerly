@@ -1,5 +1,14 @@
 import { Beer } from 'lib/types';
 
+export const getBeersByPage = async ({ pageParam = 1 }) => {
+  const res = await fetch(`https://api.punkapi.com/v2/beers?page=${pageParam}`);
+
+  return {
+    data: (await res.json()) as Beer[],
+    pageParam,
+  };
+};
+
 export const getAllBeersIds = async (): Promise<string[]> => {
   const ids: string[] = [];
   const res = await fetch('https://api.punkapi.com/v2/beers?page=1&per_page=80');
