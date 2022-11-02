@@ -31,6 +31,15 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   const { id } = context.params as ParamsProps;
   const beer = await getBeerById(id);
 
+  if (!beer) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       beer,
