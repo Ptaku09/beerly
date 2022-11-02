@@ -42,35 +42,37 @@ export default function BeerPage({ beer }: { beer: Beer }) {
   return (
     <>
       <Head>
-        <title>Beerly - {beer.name}</title>
+        <title>{beer.name}</title>
         <meta name="description" content={beer.description} />
       </Head>
 
       <>
         <OrangeWaveWrapper>
-          <h1 className="text-4xl text-center text-brown-500 font-josefin font-bold">{beer.name}</h1>
-          <p className="font-poppins text-gray-600 text-lg font-bold px-8 text-center -mt-3">{beer.tagline}</p>
+          <h1 className="md:mt-12 text-4xl md:text-5xl text-center text-brown-500 font-josefin font-bold">{beer.name}</h1>
+          <p className="font-poppins text-gray-600 text-lg font-bold px-8 text-center -mt-3 md:mb-5">{beer.tagline}</p>
           <InstaxImage image={beer.image_url} fallback={FallbackBeer} alt={beer.name} />
           <p className="font-poppins text-gray-600 text-lg font-bold text-center">- {beer.abv}% -</p>
         </OrangeWaveWrapper>
 
-        <div className="px-5 font-poppins text-lg">
-          <SectionTitle>Description</SectionTitle>
-          <p className="mb-9">{beer.description}</p>
+        <div className="px-5 font-poppins text-lg md:grid md:grid-cols-[1fr_0.5fr] xl:grid-cols-[1fr_900px_400px_1fr]">
+          <div className="md:col-start-1 xl:col-start-2 md:w-2/3 md:ml-32">
+            <SectionTitle>Description</SectionTitle>
+            <p className="mb-9">{beer.description}</p>
+          </div>
 
           {beer.food_pairing.length > 0 && (
-            <>
+            <div className="md:col-start-1 xl:col-start-2 md:w-2/3 md:ml-32">
               <SectionTitle>Try with</SectionTitle>
               <ul className="mb-9 list-disc list-inside space-y-2">
                 {beer.food_pairing.map((food: string, index: number) => (
                   <li key={index}>{food}</li>
                 ))}
               </ul>
-            </>
+            </div>
           )}
 
           {(beer.ingredients.malt.length > 0 || beer.ingredients.hops.length > 0) && (
-            <>
+            <div className="md:col-start-2 xl:col-start-3 md:row-start-1 md:row-span-6 md:border-l-2 md:pl-8 md:mb-9 md:h-fit">
               <SectionTitle>Ingredients</SectionTitle>
               <ul className="mb-9 list-disc list-inside space-y-4">
                 {beer.ingredients.malt.map((malt, index: number) => (
@@ -105,72 +107,74 @@ export default function BeerPage({ beer }: { beer: Beer }) {
                 ))}
                 <li className="font-bold">{beer.ingredients.yeast}</li>
               </ul>
-            </>
+            </div>
           )}
 
           {beer.brewers_tips && (
-            <>
+            <div className="md:col-start-1 xl:col-start-2 md:w-2/3 md:ml-32">
               <FancySectionTitle>Good to know</FancySectionTitle>
               <p className="mb-9">{beer.brewers_tips}</p>
-            </>
+            </div>
           )}
 
-          <MoreDetails>
-            <ul className="w-full">
-              <li className="border-y-2 p-2 flex justify-between">
-                First brewed: <span className="font-bold">{beer.first_brewed || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                IBU: <span className="font-bold">{beer.ibu || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                Target FG: <span className="font-bold">{beer.target_fg || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                Target OG: <span className="font-bold">{beer.target_og || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                EBC: <span className="font-bold">{beer.ebc || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                SRM: <span className="font-bold">{beer.srm || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                pH: <span className="font-bold">{beer.ph || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                Attenuation level: <span className="font-bold">{beer.attenuation_level || '-'}</span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                Volume:
-                <span className="font-bold">
-                  {beer.volume.value || '-'} {beer.volume.unit}
-                </span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                Boil volume:
-                <span className="font-bold">
-                  {beer.boil_volume.value || '-'} {beer.boil_volume.unit}
-                </span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                Mash temp:
-                <span className="font-bold">
-                  {beer.method.mash_temp[0].temp.value || '-'} {beer.method.mash_temp[0].temp.unit} / {beer.method.mash_temp[0].duration || '-'}
-                </span>
-              </li>
-              <li className="border-b-2 p-2 flex justify-between">
-                Fermentation:
-                <span className="font-bold">
-                  {beer.method.fermentation.temp.value || '-'} {beer.method.fermentation.temp.unit}
-                </span>
-              </li>
-              <li className="border-b-2 p-2 flex flex-col">
-                Twist:
-                <span className="font-bold">{beer.method.twist || '-'}</span>
-              </li>
-            </ul>
-          </MoreDetails>
+          <div className="md:col-start-1 xl:col-start-2 md:w-2/3 md:ml-32">
+            <MoreDetails>
+              <ul className="w-full">
+                <li className="border-y-2 p-2 flex justify-between">
+                  First brewed: <span className="font-bold">{beer.first_brewed || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  IBU: <span className="font-bold">{beer.ibu || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  Target FG: <span className="font-bold">{beer.target_fg || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  Target OG: <span className="font-bold">{beer.target_og || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  EBC: <span className="font-bold">{beer.ebc || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  SRM: <span className="font-bold">{beer.srm || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  pH: <span className="font-bold">{beer.ph || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  Attenuation level: <span className="font-bold">{beer.attenuation_level || '-'}</span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  Volume:
+                  <span className="font-bold">
+                    {beer.volume.value || '-'} {beer.volume.unit}
+                  </span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  Boil volume:
+                  <span className="font-bold">
+                    {beer.boil_volume.value || '-'} {beer.boil_volume.unit}
+                  </span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  Mash temp:
+                  <span className="font-bold">
+                    {beer.method.mash_temp[0].temp.value || '-'} {beer.method.mash_temp[0].temp.unit} / {beer.method.mash_temp[0].duration || '-'}
+                  </span>
+                </li>
+                <li className="border-b-2 p-2 flex justify-between">
+                  Fermentation:
+                  <span className="font-bold">
+                    {beer.method.fermentation.temp.value || '-'} {beer.method.fermentation.temp.unit}
+                  </span>
+                </li>
+                <li className="border-b-2 p-2 flex flex-col">
+                  Twist:
+                  <span className="font-bold">{beer.method.twist || '-'}</span>
+                </li>
+              </ul>
+            </MoreDetails>
+          </div>
         </div>
       </>
     </>
