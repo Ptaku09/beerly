@@ -8,6 +8,7 @@ module.exports = {
       },
       fontFamily: {
         josefin: ['Josefin Sans', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       textColor: {
         'brown-500': '#3d2816',

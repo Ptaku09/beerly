@@ -4,35 +4,35 @@ export type Beer = {
   tagline: string;
   first_brewed: string;
   description: string;
-  image_url: string;
+  image_url: string | null;
   abv: number;
-  ibu: number;
-  target_fg: number;
-  target_og: number;
-  ebc: number;
-  srm: number;
-  ph: number;
-  attenuation_level: number;
+  ibu: number | null;
+  target_fg: number | null;
+  target_og: number | null;
+  ebc: number | null;
+  srm: number | null;
+  ph: number | null;
+  attenuation_level: number | null;
   volume: {
-    value: number;
-    unit: string;
+    value: number | null;
+    unit: string | null;
   };
   boil_volume: {
-    value: number;
-    unit: string;
+    value: number | null;
+    unit: string | null;
   };
   method: {
     mash_temp: {
       temp: {
-        value: number;
-        unit: string;
+        value: number | null;
+        unit: string | null;
       };
-      duration: number;
+      duration: number | null;
     }[];
     fermentation: {
       temp: {
-        value: number;
-        unit: string;
+        value: number | null;
+        unit: string | null;
       };
     };
     twist: string | null;
@@ -54,7 +54,7 @@ export type Beer = {
       add: string;
       attribute: string;
     }[];
-    yeast: string;
+    yeast: string | null;
   };
   food_pairing: string[];
   brewers_tips: string;

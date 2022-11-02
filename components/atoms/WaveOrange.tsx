@@ -2,7 +2,7 @@ import React from 'react';
 
 const WaveOrange = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="-translate-y-0.5 absolute top-72 md:top-52 left-0 z-[2]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-screen">
       <path
         fill="#e67e22"
         fillOpacity="1"
