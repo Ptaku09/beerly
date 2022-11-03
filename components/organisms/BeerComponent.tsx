@@ -12,7 +12,7 @@ const BeerComponent = ({ beerData }: { beerData: Beer }) => {
         <FavoritesComponent beerId={beerData.id} size={25} />
       </div>
       <Link href={`/beers/${beerData.id}`}>
-        <div className="grid grid-cols-[0.5fr_1fr]">
+        <div className="grid grid-cols-[0.5fr_1fr] md:transition-all md:duration-300 md:hover:-translate-y-1">
           <InstaxImageSmall image={beerData.image_url} fallback={FallbackBeer} alt={beerData.name} />
           <div className="flex items-start justify-center flex-col px-2">
             <p className="font-josefin font-bold text-lg leading-5">{beerData.name}</p>

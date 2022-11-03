@@ -14,7 +14,7 @@ const FavoritesComponent = ({ beerId, size = 20 }: { beerId: number; size?: numb
 
   return (
     <div>
-      <button onClick={() => handleFavoriteBeer(beerId)}>
+      <button onClick={() => handleFavoriteBeer(beerId)} className="md:hover:-translate-y-0.5 md:transition-all md:duration-300">
         {isFavorite ? (
           <Image src={HeartFilled} alt="filled heart" width={size} height={size} />
         ) : (
