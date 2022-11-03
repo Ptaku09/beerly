@@ -39,24 +39,28 @@ export default function Home() {
           </div>
         </DoubleWaveWrapper>
 
-        {status === 'success' && (
-          <InfiniteScroll
-            dataLength={data?.pages.length * BEERS_PER_PAGE}
-            next={fetchNextPage}
-            hasMore={hasNextPage || false}
-            loader={<h4>loading...</h4>}
-          >
-            <div className="flex flex-col gap-5 px-4 py-5">
-              {data?.pages.map((page: PageData) =>
-                page.data.map((beer: Beer) => (
-                  <Link key={beer.id} href={`/beers/${beer.id}`}>
-                    <BeerComponent beerData={beer} />
-                  </Link>
-                ))
-              )}
+        <div className="md:grid md:grid-cols-[0.1fr_1fr_0.1fr] xl:grid-cols-[1fr_1300px_1fr] md:-mt-16 xl:-mt-28">
+          {status === 'success' && (
+            <div className="md:col-start-2">
+              <InfiniteScroll
+                dataLength={data?.pages.length * BEERS_PER_PAGE}
+                next={fetchNextPage}
+                hasMore={hasNextPage || false}
+                loader={<h4>loading...</h4>}
+              >
+                <div className="flex flex-col gap-5 px-4 py-5 lg:grid lg:grid-cols-2">
+                  {data?.pages.map((page: PageData) =>
+                    page.data.map((beer: Beer) => (
+                      <Link key={beer.id} href={`/beers/${beer.id}`}>
+                        <BeerComponent beerData={beer} />
+                      </Link>
+                    ))
+                  )}
+                </div>
+              </InfiniteScroll>
             </div>
-          </InfiniteScroll>
-        )}
+          )}
+        </div>
       </>
     </>
   );

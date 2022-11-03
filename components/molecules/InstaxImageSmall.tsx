@@ -15,7 +15,7 @@ const InstaxImageSmall = ({ image, fallback, alt }: Props) => {
         <div className="relative z-10 w-24 h-24">
           <Image src={image || fallback} alt={alt} fill sizes="30vw" className="object-contain" />
         </div>
-        <div className="absolute top-0 -translate-y-0.5">
+        <div className="absolute top-0 -translate-y-0.5 lg:-translate-y-16">
           <WaveWhite />
         </div>
       </div>
