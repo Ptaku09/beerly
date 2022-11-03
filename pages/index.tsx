@@ -7,6 +7,8 @@ import DoubleWaveWrapper from 'components/molecules/DoubleWaveWrapper';
 import Title from 'components/atoms/Title';
 import Subtitle from 'components/atoms/Subtitle';
 import Head from 'next/head';
+import Link from 'next/link';
+import BeerComponent from 'components/organisms/BeerComponent';
 
 type PageData = {
   data: Beer[];
@@ -44,12 +46,12 @@ export default function Home() {
             hasMore={hasNextPage || false}
             loader={<h4>loading...</h4>}
           >
-            <div className="flex flex-col overflow-auto">
+            <div className="flex flex-col gap-5 px-4 py-5">
               {data?.pages.map((page: PageData) =>
                 page.data.map((beer: Beer) => (
-                  <div key={beer.id} className="text-3xl py-20">
-                    <p>{beer.name}</p>
-                  </div>
+                  <Link key={beer.id} href={`/beers/${beer.id}`}>
+                    <BeerComponent beerData={beer} />
+                  </Link>
                 ))
               )}
             </div>
