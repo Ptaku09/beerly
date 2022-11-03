@@ -8,7 +8,7 @@ import Title from 'components/atoms/Title';
 import Subtitle from 'components/atoms/Subtitle';
 import Head from 'next/head';
 import BeerComponent from 'components/organisms/BeerComponent';
-import InfiniteScrollLoader from 'components/organisms/InfiniteScrollLoader';
+import BeerComponentLoader from 'components/organisms/BeerComponentLoader';
 
 type PageData = {
   data: Beer[];
@@ -46,7 +46,7 @@ export default function Home() {
                 dataLength={data?.pages.length * BEERS_PER_PAGE}
                 next={fetchNextPage}
                 hasMore={hasNextPage || false}
-                loader={<InfiniteScrollLoader />}
+                loader={<BeerComponentLoader />}
               >
                 <div className="flex flex-col gap-5 px-4 py-5 lg:grid lg:grid-cols-2">
                   {data?.pages.map((page: PageData) => page.data.map((beer: Beer) => <BeerComponent key={beer.id} beerData={beer} />))}

@@ -1,41 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import HeartFilled from 'public/icons/heart-filled.svg';
 import HeartUnfilled from 'public/icons/heart-unfilled.svg';
 import Image from 'next/image';
+import { FavoriteBeersContext } from 'providers/FavoriteBeersProvider';
 
 const FavoritesComponent = ({ beerId, size = 20 }: { beerId: number; size?: number }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const { favoriteBeersIds, handleFavoriteBeer } = useContext(FavoriteBeersContext);
 
   useEffect(() => {
-    const favorites = localStorage.getItem('beerly-favorites');
-
-    favorites && JSON.parse(favorites).includes(beerId) ? setIsFavorite(true) : setIsFavorite(false);
-  }, [beerId]);
-
-  const handleFavorites = () => {
-    const favorites = localStorage.getItem('beerly-favorites');
-
-    if (favorites) {
-      const parsedFavorites = JSON.parse(favorites);
-
-      if (parsedFavorites.includes(beerId)) {
-        const filteredFavorites = parsedFavorites.filter((favorite: number) => favorite !== beerId);
-
-        localStorage.setItem('beerly-favorites', JSON.stringify(filteredFavorites));
-        setIsFavorite(false);
-      } else {
-        localStorage.setItem('beerly-favorites', JSON.stringify([...parsedFavorites, beerId]));
-        setIsFavorite(true);
-      }
-    } else {
-      localStorage.setItem('beerly-favorites', JSON.stringify([beerId]));
-      setIsFavorite(true);
-    }
-  };
+    favoriteBeersIds.some((id: number) => id === beerId) ? setIsFavorite(true) : setIsFavorite(false);
+  }, [beerId, favoriteBeersIds]);
 
   return (
     <div>
-      <button onClick={handleFavorites}>
+      <button onClick={() => handleFavoriteBeer(beerId)}>
         {isFavorite ? (
           <Image src={HeartFilled} alt="filled heart" width={size} height={size} />
         ) : (

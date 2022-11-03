@@ -1,7 +1,7 @@
 import React from 'react';
 import BeerComponentSkeleton from 'components/molecules/BeerComponentSkeleton';
 
-const InfiniteScrollLoader = () => {
+const BeerComponentLoader = () => {
   return (
     <>
       <BeerComponentSkeleton />
@@ -10,4 +10,4 @@ const InfiniteScrollLoader = () => {
   );
 };
 
-export default InfiniteScrollLoader;
+export default BeerComponentLoader;

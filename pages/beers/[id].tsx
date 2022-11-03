@@ -13,7 +13,7 @@ import MoreDetails from 'components/molecules/MoreDetails';
 import FavoritesComponent from 'components/organisms/FavoritesComponent';
 import Arrow from 'public/icons/arrow.svg';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface ParamsProps extends ParsedUrlQuery {
   id: string;
@@ -52,6 +52,8 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 };
 
 export default function BeerPage({ beer }: { beer: Beer }) {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -66,11 +68,12 @@ export default function BeerPage({ beer }: { beer: Beer }) {
           <InstaxImage image={beer.image_url} fallback={FallbackBeer} alt={beer.name} />
           <p className="font-poppins text-gray-600 text-lg font-bold text-center">- {beer.abv}% -</p>
           <div className="flex items-center justify-around md:justify-center gap-16 md:gap-32 mt-5 px-4 rounded-xl shadow-xl bg-white">
-            <Link href="/">
-              <div className="flex items-center justify-center bg-orange-500 md:hover:bg-orange-600 px-2 rounded-xl shadow-lg transition-all duration-300">
-                <Image src={Arrow} alt="filled heart" width={40} height={40} />
-              </div>
-            </Link>
+            <button
+              onClick={() => router.back()}
+              className="flex items-center justify-center bg-orange-500 md:hover:bg-orange-600 px-2 rounded-xl shadow-lg transition-all duration-300"
+            >
+              <Image src={Arrow} alt="filled heart" width={40} height={40} />
+            </button>
             <div className="translate-y-1">
               <FavoritesComponent beerId={beer.id} size={50} />
             </div>
