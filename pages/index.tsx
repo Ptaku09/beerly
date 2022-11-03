@@ -7,7 +7,6 @@ import DoubleWaveWrapper from 'components/molecules/DoubleWaveWrapper';
 import Title from 'components/atoms/Title';
 import Subtitle from 'components/atoms/Subtitle';
 import Head from 'next/head';
-import Link from 'next/link';
 import BeerComponent from 'components/organisms/BeerComponent';
 import InfiniteScrollLoader from 'components/organisms/InfiniteScrollLoader';
 
@@ -50,13 +49,7 @@ export default function Home() {
                 loader={<InfiniteScrollLoader />}
               >
                 <div className="flex flex-col gap-5 px-4 py-5 lg:grid lg:grid-cols-2">
-                  {data?.pages.map((page: PageData) =>
-                    page.data.map((beer: Beer) => (
-                      <Link key={beer.id} href={`/beers/${beer.id}`}>
-                        <BeerComponent beerData={beer} />
-                      </Link>
-                    ))
-                  )}
+                  {data?.pages.map((page: PageData) => page.data.map((beer: Beer) => <BeerComponent key={beer.id} beerData={beer} />))}
                 </div>
               </InfiniteScroll>
             </div>
