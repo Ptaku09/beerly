@@ -7,7 +7,7 @@ import InstaxImageSmall from 'components/molecules/InstaxImageSmall';
 
 const BeerComponent = ({ beerData }: { beerData: Beer }) => {
   return (
-    <div key={beerData.id} className="grid grid-cols-[50px_0.5fr_1fr] py-2 border-2 rounded-xl font-poppins shadow-md">
+    <div className="grid grid-cols-[50px_0.5fr_1fr] py-2 border-2 rounded-xl font-poppins shadow-md">
       <div className="flex items-center justify-center">
         <Image src={Heart} alt="heart" width={20} height={20} />
       </div>
