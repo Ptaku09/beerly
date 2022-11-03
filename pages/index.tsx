@@ -1,11 +1,12 @@
-import Head from 'next/head';
 import { ReactElement } from 'react';
-import Title from 'components/atoms/Title';
-import Subtitle from 'components/atoms/Subtitle';
-import DoubleWaveWrapper from 'components/molecules/DoubleWaveWrapper';
 import { useInfiniteQuery } from 'react-query';
 import { Beer } from 'lib/types';
-import { getBeersByPage } from 'lib/beers';
+import { BEERS_PER_PAGE, getBeersByPage } from 'lib/beers';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import DoubleWaveWrapper from 'components/molecules/DoubleWaveWrapper';
+import Title from 'components/atoms/Title';
+import Subtitle from 'components/atoms/Subtitle';
+import Head from 'next/head';
 
 type PageData = {
   data: Beer[];
@@ -13,15 +14,13 @@ type PageData = {
 };
 
 export default function Home() {
-  const { data, fetchNextPage } = useInfiniteQuery('beers', getBeersByPage, {
+  const { data, status, fetchNextPage, hasNextPage } = useInfiniteQuery('beers', getBeersByPage, {
     getNextPageParam: (lastPage: PageData) => {
-      if (lastPage.data.length < 25) return undefined;
+      if (lastPage.data.length < BEERS_PER_PAGE) return undefined;
 
       return lastPage.pageParam + 1;
     },
   });
-
-  const handleLoadMore = async () => await fetchNextPage();
 
   return (
     <>
@@ -30,16 +29,33 @@ export default function Home() {
         <meta name="description" content="Your beer library" />
       </Head>
 
-      <main>
+      <>
         <DoubleWaveWrapper>
           <div className="flex justify-center items-center flex-col">
             <Title>Beerly.</Title>
             <Subtitle>Your beer library</Subtitle>
           </div>
         </DoubleWaveWrapper>
-        <div>{data?.pages.map((page: PageData) => page.data.map((beer: Beer) => <p key={beer.name}>{beer.name}</p>))}</div>
-        <button onClick={handleLoadMore}>Load more</button>
-      </main>
+
+        {status === 'success' && (
+          <InfiniteScroll
+            dataLength={data?.pages.length * BEERS_PER_PAGE}
+            next={fetchNextPage}
+            hasMore={hasNextPage || false}
+            loader={<h4>loading...</h4>}
+          >
+            <div className="flex flex-col overflow-auto">
+              {data?.pages.map((page: PageData) =>
+                page.data.map((beer: Beer) => (
+                  <div key={beer.id} className="text-3xl py-20">
+                    <p>{beer.name}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          </InfiniteScroll>
+        )}
+      </>
     </>
   );
 }
