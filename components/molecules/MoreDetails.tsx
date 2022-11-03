@@ -10,7 +10,7 @@ const MoreDetails = ({ children }: { children: ReactElement }) => {
       {isDetailsShown && children}
       <button
         onClick={() => setIsDetailsShown((prevState: boolean) => !prevState)}
-        className="bg-orange-500 px-6 py-2 rounded-full shadow-lg text-white flex items-center justify-center flex-row gap-2"
+        className="bg-orange-500 px-6 py-2 rounded-full shadow-lg text-white flex items-center justify-center flex-row gap-2 md:hover:bg-orange-600 transition-all duration-300"
       >
         {isDetailsShown ? (
           <>

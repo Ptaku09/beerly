@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getAllBeersIds, getBeerById } from 'lib/beers';
 import { Beer } from 'lib/types';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import OrangeWaveWrapper from 'components/molecules/OrangeWaveWrapper';
 import SectionTitle from 'components/atoms/SectionTitle';
@@ -10,6 +10,10 @@ import FancySectionTitle from 'components/atoms/FancySectionTitle';
 import FallbackBeer from 'public/images/fallback-beer.png';
 import InstaxImage from 'components/molecules/InstaxImage';
 import MoreDetails from 'components/molecules/MoreDetails';
+import FavoritesComponent from 'components/organisms/FavoritesComponent';
+import Arrow from 'public/icons/arrow.svg';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface ParamsProps extends ParsedUrlQuery {
   id: string;
@@ -61,6 +65,16 @@ export default function BeerPage({ beer }: { beer: Beer }) {
           <p className="font-poppins text-gray-600 text-lg font-bold px-8 text-center -mt-3 md:mb-5">{beer.tagline}</p>
           <InstaxImage image={beer.image_url} fallback={FallbackBeer} alt={beer.name} />
           <p className="font-poppins text-gray-600 text-lg font-bold text-center">- {beer.abv}% -</p>
+          <div className="flex items-center justify-around md:justify-center gap-16 md:gap-32 mt-5 px-4 rounded-xl shadow-xl bg-white">
+            <Link href="/">
+              <div className="flex items-center justify-center bg-orange-500 md:hover:bg-orange-600 px-2 rounded-xl shadow-lg transition-all duration-300">
+                <Image src={Arrow} alt="filled heart" width={40} height={40} />
+              </div>
+            </Link>
+            <div className="translate-y-1">
+              <FavoritesComponent beerId={beer.id} size={50} />
+            </div>
+          </div>
         </OrangeWaveWrapper>
 
         <div className="px-5 font-poppins text-lg md:grid md:grid-cols-[1fr_0.5fr] xl:grid-cols-[1fr_900px_400px_1fr]">
