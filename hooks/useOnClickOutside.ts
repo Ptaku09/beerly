@@ -17,7 +17,7 @@ const useOnClickOutside = <T extends HTMLElement = HTMLElement>(ref: RefObject<T
       document.removeEventListener('click', handleClickOutside, true);
       document.removeEventListener('touchstart', handleClickOutside, true);
     };
-  });
+  }, [ref, handler]);
 };
 
 export default useOnClickOutside;

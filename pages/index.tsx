@@ -10,6 +10,7 @@ import Head from 'next/head';
 import BeerComponent from 'components/organisms/BeerComponent';
 import BeerComponentLoader from 'components/organisms/BeerComponentLoader';
 import SearchBar from 'components/organisms/SearchBar';
+import ScrollToTopLayout from 'components/templates/ScrollToTopLayout';
 
 type PageData = {
   data: Beer[];
@@ -67,5 +68,9 @@ export default function Home() {
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <>{page}</>;
+  return (
+    <>
+      <ScrollToTopLayout>{page}</ScrollToTopLayout>
+    </>
+  );
 };
