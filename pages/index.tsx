@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { Beer } from 'lib/types';
 import { BEERS_PER_PAGE, getBeersByPage } from 'lib/beers';
@@ -11,6 +11,7 @@ import BeerComponent from 'components/organisms/BeerComponent';
 import BeerComponentLoader from 'components/organisms/BeerComponentLoader';
 import SearchBar from 'components/organisms/SearchBar';
 import ScrollToTopLayout from 'components/templates/ScrollToTopLayout';
+import DefaultLayout from 'components/templates/DefaultLayout';
 
 type PageData = {
   data: Beer[];
@@ -70,7 +71,9 @@ export default function Home() {
 Home.getLayout = function getLayout(page: ReactElement) {
   return (
     <>
-      <ScrollToTopLayout>{page}</ScrollToTopLayout>
+      <DefaultLayout>
+        <ScrollToTopLayout>{page}</ScrollToTopLayout>
+      </DefaultLayout>
     </>
   );
 };

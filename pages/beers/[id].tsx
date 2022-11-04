@@ -14,6 +14,7 @@ import FavoritesComponent from 'components/organisms/FavoritesComponent';
 import Arrow from 'public/icons/arrow.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import DefaultLayout from 'components/templates/DefaultLayout';
 
 interface ParamsProps extends ParsedUrlQuery {
   id: string;
@@ -208,5 +209,9 @@ export default function BeerPage({ beer }: { beer: Beer }) {
 }
 
 BeerPage.getLayout = function getLayout(page: ReactElement) {
-  return <>{page}</>;
+  return (
+    <>
+      <DefaultLayout>{page}</DefaultLayout>
+    </>
+  );
 };

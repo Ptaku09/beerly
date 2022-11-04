@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import OrangeWaveWrapper from 'components/molecules/OrangeWaveWrapper';
-import { useContext, useEffect, useState } from 'react';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Beer } from 'lib/types';
 import Link from 'next/link';
 import BeerComponentLoader from 'components/organisms/BeerComponentLoader';
 import { FavoriteBeersContext } from 'providers/FavoriteBeersProvider';
 import { getBeerById } from 'lib/beers';
 import BeerComponent from 'components/organisms/BeerComponent';
+import DefaultLayout from 'components/templates/DefaultLayout';
 
 export default function Favorites() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -68,3 +69,11 @@ export default function Favorites() {
     </>
   );
 }
+
+Favorites.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <>
+      <DefaultLayout>{page}</DefaultLayout>
+    </>
+  );
+};
