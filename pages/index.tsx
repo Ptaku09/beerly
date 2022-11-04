@@ -9,6 +9,7 @@ import Subtitle from 'components/atoms/Subtitle';
 import Head from 'next/head';
 import BeerComponent from 'components/organisms/BeerComponent';
 import BeerComponentLoader from 'components/organisms/BeerComponentLoader';
+import SearchBar from 'components/organisms/SearchBar';
 
 type PageData = {
   data: Beer[];
@@ -40,6 +41,11 @@ export default function Home() {
         </DoubleWaveWrapper>
 
         <div className="md:grid md:grid-cols-[0.1fr_1fr_0.1fr] xl:grid-cols-[1fr_1300px_1fr] md:-mt-16 xl:-mt-28">
+          <div className="md:col-start-2 md:mb-5 md:flex md:justify-center">
+            <div className="md:w-1/2">
+              <SearchBar />
+            </div>
+          </div>
           {status === 'success' && (
             <div className="md:col-start-2">
               <InfiniteScroll
