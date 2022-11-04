@@ -27,4 +27,9 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #d75c10;
     }
+
+    #search-results::-webkit-scrollbar {
+        background: rgb(241 245 249);
+        border-bottom-right-radius: 12px;
+    }
 }
