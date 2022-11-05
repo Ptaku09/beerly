@@ -6,10 +6,13 @@ import { Beer } from 'lib/types';
 import { getBeersByQuery } from 'lib/beers';
 import SearchResults from 'components/molecules/SearchResults';
 import useOnClickOutside from 'hooks/useOnClickOutside';
+import { useRouter } from 'next/router';
 
 const SearchBar = () => {
+  const [inputValue, setInputValue] = useState<string>('');
   const [foundedBeers, setFoundedBeers] = useState<Beer[]>([]);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const debouncedSearch = useRef(
     debounce(async (query: string) => {
       if (query.length <= 1) {
@@ -26,9 +29,20 @@ const SearchBar = () => {
     };
   }, [debouncedSearch]);
 
+  // Hide results on route change
+  useEffect(() => {
+    setInputValue('');
+    setFoundedBeers([]);
+  }, [router.asPath]);
+
   useOnClickOutside(ref, () => {
     setFoundedBeers([]);
   });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+    debouncedSearch(e.target.value);
+  };
 
   return (
     <div ref={ref} className="md:w-full relative z-20 mx-4 py-1 flex justify-start items-center font-poppins border-2 rounded-xl">
@@ -38,8 +52,9 @@ const SearchBar = () => {
       <input
         className="w-full h-full absolute z-10 pl-11 py-4 rounded-xl outline-orange-500"
         type="text"
+        value={inputValue}
         maxLength={30}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => debouncedSearch(e.target.value)}
+        onChange={handleInputChange}
         onFocus={(e: React.ChangeEvent<HTMLInputElement>) => debouncedSearch(e.target.value)}
         placeholder="Search..."
       />
