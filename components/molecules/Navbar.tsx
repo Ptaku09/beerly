@@ -32,18 +32,25 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-30 top-0 bg-white w-full h-16 shadow-xl font-josefin transition-all duration-300 ${
+      className={`fixed z-30 top-0 md:grid md:grid-cols-[0.1fr_1fr_0.1fr] xl:grid-cols-[1fr_1300px_1fr] bg-white w-full h-16 shadow-xl font-josefin transition-all duration-300 ${
         scrollDirection === ScrollDirection.DOWN ? 'translate-y-0' : '-translate-y-16'
       }`}
     >
-      <ul className="h-full flex justify-around items-center text-xl text-brown-500 transition-all duration-300">
-        <li>
-          <Link href="/">Home</Link>
+      <ul className="h-full flex justify-around items-center md:col-start-2 text-xl text-brown-500 transition-all duration-300">
+        <li className="md:hover:bg-slate-200 md:hover:-translate-y-0.5 md:rounded-xl md:transition-all md:duration-300">
+          <Link className="md:px-4" href="/">
+            Home
+          </Link>
         </li>
-        <li>
-          <Link href="/favorites">Favorites</Link>
+        <li className="hidden md:inline-block w-96">
+          <SearchBar />
         </li>
-        <li>
+        <li className="md:hover:bg-slate-200 md:hover:-translate-y-0.5 md:rounded-xl md:transition-all md:duration-300">
+          <Link className="md:px-4" href="/favorites">
+            Favorites
+          </Link>
+        </li>
+        <li className="md:hidden">
           <button onClick={handleToggleSearchBar} className="flex items-center justify-center">
             <Image src={SearchIcon} alt="search icon" width={25} height={25} />
           </button>
