@@ -17,6 +17,7 @@
     "@types/lodash": "^4.14.187",
     "lodash": "^4.17.21",
     "next": "13.0.0",
+    "nprogress": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "18.11.8",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
     "autoprefixer": "^10.4.13",
