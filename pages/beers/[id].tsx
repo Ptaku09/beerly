@@ -62,7 +62,7 @@ export default function BeerPage({ beer }: { beer: Beer }) {
         <meta name="description" content={beer.description} />
       </Head>
 
-      <>
+      <div className="flex flex-col">
         <OrangeWaveWrapper>
           <h1 className="md:mt-12 text-4xl md:text-5xl text-center text-brown-500 font-josefin font-bold">{beer.name}</h1>
           <p className="font-poppins text-gray-600 text-lg font-bold px-8 text-center -mt-3 md:mb-5">{beer.tagline}</p>
@@ -144,7 +144,7 @@ export default function BeerPage({ beer }: { beer: Beer }) {
             </div>
           )}
 
-          <div className="md:col-start-1 xl:col-start-2 md:w-2/3 md:ml-32">
+          <div className="mb-9 md:col-start-1 xl:col-start-2 md:w-2/3 md:ml-32">
             <MoreDetails>
               <ul className="w-full">
                 <li className="border-y-2 p-2 flex justify-between">
@@ -203,7 +203,7 @@ export default function BeerPage({ beer }: { beer: Beer }) {
             </MoreDetails>
           </div>
         </div>
-      </>
+      </div>
     </>
   );
 }

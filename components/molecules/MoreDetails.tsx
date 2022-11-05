@@ -6,7 +6,7 @@ const MoreDetails = ({ children }: { children: ReactElement }) => {
   const [isDetailsShown, setIsDetailsShown] = useState<boolean>(false);
 
   return (
-    <div className="w-full flex items-center justify-start flex-col gap-5 mb-9">
+    <div className="w-full flex items-center justify-start flex-col gap-5">
       {isDetailsShown && children}
       <button
         onClick={() => setIsDetailsShown((prevState: boolean) => !prevState)}
